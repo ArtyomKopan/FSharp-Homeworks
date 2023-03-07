@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <PackageReference Include="FsCheck" Version="3.0.0-beta2" />
+      <PackageReference Include="FsUnit" Version="5.2.0" />
     </ItemGroup>
 
 </Project>

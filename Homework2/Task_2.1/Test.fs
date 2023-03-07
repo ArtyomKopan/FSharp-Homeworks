@@ -1,4 +1,4 @@
-open Task2
+open Task1
 open FsCheck
     
 let even_numbers_test list =

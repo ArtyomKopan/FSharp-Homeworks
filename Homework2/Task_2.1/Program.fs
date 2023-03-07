@@ -1,4 +1,4 @@
-﻿module Task2
+﻿module Task1
 
 let is_even x = abs x % 2 = 0
 
