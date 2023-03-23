@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Homework3. Task 3.2}
+\author{Artyom Kopan}
+
+\begin{document}
+\huge
+\maketitle
+
+$$
+S\:K\:K \overset{?}{=} I
+$$
+
+\begin{gather}
+K\:K = (\lambda xy.x)(\lambda xy.x) =\\ (\lambda x.(\lambda y.x))\:(\lambda x.(\lambda y.x)) =\\ \lambda y.(\lambda x.(\lambda y.x))
+\end{gather}
+
+\begin{gather}
+S\:K\:K =\\ (\lambda x.(\lambda y.(\lambda z.x\:z\:(y\:z))))\:(\lambda y.(\lambda x.(\lambda y.x))) =\\ \lambda y.(\lambda z.((\lambda y.(\lambda x.(\lambda y.x)))\:z\:(y\:z))) =\\ \lambda y.(\lambda z.(\lambda x.x)) =\\ \lambda x.x = I
+\end{gather}
+
+\end{document}
