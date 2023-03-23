@@ -40,15 +40,12 @@ let rec replaceTherm expression varName therm =
     match expression with
     | Var v when v = varName -> (therm, Yes)
     | Var _ -> (expression, No)
-    | Application (expr1, expr2) -> 
-        let result1 = replaceTherm expr1 varName therm
-        let result2 = replaceTherm expr2 varName therm
-        if snd result1 = Yes then (Application(fst result1, expr2), Yes)
-        elif snd result2 = Yes then (Application(expr1, fst result2), Yes)
-        else (Application(expr1, expr2), No)
     | Abstraction (v, expr) ->
         if v = varName then replaceTherm expr varName therm
         else (expression, No)
+    | Application (expr1, expr2) ->
+        (Application(fst (replaceTherm expr1 varName therm),
+                     fst (replaceTherm expr2 varName therm)), Yes)
         
 let rec normalize expression =
     match expression with
