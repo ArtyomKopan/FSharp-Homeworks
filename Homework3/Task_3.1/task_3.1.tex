@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{mathtools}
+
+\title{Homework3. Task 3.1}
+\author{Artyom Kopan}
+
+\begin{document}
+\huge
+\maketitle
+
+\begin{equation}
+    ((\lambda a.(\lambda b.b\:b)(\lambda b.b\:b))\:b)((\lambda c.(c\:b))(\lambda a.a))
+\end{equation}
+$\beta$-conversion
+\begin{equation}
+    (\lambda a.(\lambda b.b\:b)(\lambda b.b\:b))\:b)\:((\lambda a.a)\:b)
+\end{equation}
+$\beta$-conversion
+\begin{equation}
+    ((\lambda a.(\lambda b.b\:b)(\lambda b.b\:b))\:b)\:b
+\end{equation}
+$\beta$-conversion
+\begin{equation}
+    (\lambda b.b\:b)\:(\lambda b.b\:b)\:b
+\end{equation}
+
+\end{document}
