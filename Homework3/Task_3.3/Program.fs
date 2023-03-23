@@ -5,8 +5,6 @@ type LambdaExpression =
     | Abstraction of string * LambdaExpression
     | Application of LambdaExpression * LambdaExpression
     
-type ReplaceStatus = Yes | No
-    
 let rec getFreeVars expression =
     match expression with
     | Var v -> Set.singleton v
@@ -38,18 +36,18 @@ let alphaRename expression var =
 
 let rec replaceTherm expression varName therm =
     match expression with
-    | Var v when v = varName -> (therm, Yes)
-    | Var _ -> (expression, No)
+    | Var v when v = varName -> therm
+    | Var _ -> expression
     | Abstraction (v, expr) when v = varName -> replaceTherm expr varName therm
     | Abstraction (v, expr) ->
         if (not (Set.contains v (getFreeVars therm)) || not (Set.contains varName (getFreeVars expr))) then
-            (Abstraction (v, fst (replaceTherm expr varName therm)), Yes)
+            Abstraction (v, replaceTherm expr varName therm)
         else
             let renamedExpr, v' = alphaRename expr v
-            (Abstraction (v', fst (replaceTherm renamedExpr varName therm)), Yes)
+            Abstraction (v', replaceTherm renamedExpr varName therm)
     | Application (expr1, expr2) ->
-        (Application(fst (replaceTherm expr1 varName therm),
-                     fst (replaceTherm expr2 varName therm)), Yes)
+        Application(replaceTherm expr1 varName therm,
+                     replaceTherm expr2 varName therm)
         
 let rec normalize expression =
     match expression with
@@ -59,11 +57,11 @@ let rec normalize expression =
     | Application (expr1, expr2) -> Application (normalize expr1, normalize expr2)
 and
   betaConversion v expression1 expression2 =
-      let expression1' = alphaRename expression1 v
-      normalize (fst (replaceTherm (fst expression1') (snd expression1') expression2))
+      let newExpression1, v' = alphaRename expression1 v
+      normalize (replaceTherm newExpression1 v' expression2)
     
 let rec lambdaToString expression =
     match expression with
     | Var v -> v
     | Abstraction (v, expr) -> $"λ{v}." + lambdaToString expr
-    | Application (expr1, expr2) -> "(" + lambdaToString expr1+ ") " + lambdaToString expr2 
+    | Application (expr1, expr2) -> "(" + lambdaToString expr1 + ") " + lambdaToString expr2 
