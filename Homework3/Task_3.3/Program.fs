@@ -31,15 +31,14 @@ let rec alphaConversion expression var newVar =
                             else Abstraction (v, alphaConversion e var newVar)
 
 let alphaRename expression var =
-    if getFreeVars expression |> Set.contains var then
+    if Set.contains var (getFreeVars expression) then
         let newVar = generateVarName var
         (alphaConversion expression var newVar, newVar)
     else (expression, var)
 
 let rec replaceTherm expression varName therm =
-    let freeVars = getFreeVars expression
     match expression with
-    | Var v when v = varName -> (therm, Yes) //  && not (Set.contains v freeVars)
+    | Var v when v = varName -> (therm, Yes)
     | Var _ -> (expression, No)
     | Application (expr1, expr2) -> 
         let result1 = replaceTherm expr1 varName therm
@@ -67,9 +66,3 @@ let rec lambdaToString expression =
     | Var v -> v
     | Abstraction (v, expr) -> $"λ{v}." + lambdaToString expr
     | Application (expr1, expr2) -> "(" + lambdaToString expr1+ ") " + lambdaToString expr2 
-
-let expression2 = Application(Abstraction("z", Application(Abstraction("x", Application(Var "x", Var "y")), Var "z")), Var "w")
-let expression3 = Application(Abstraction("x", Application(Var "x", Var "y")), Var "z")
-let expression4 = Application(Abstraction("x", Var "y"), Var "z")
-let normalizedExpression = normalize expression4
-printfn $"{lambdaToString normalizedExpression}"
