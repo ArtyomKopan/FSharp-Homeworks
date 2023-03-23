@@ -40,9 +40,13 @@ let rec replaceTherm expression varName therm =
     match expression with
     | Var v when v = varName -> (therm, Yes)
     | Var _ -> (expression, No)
+    | Abstraction (v, expr) when v = varName -> replaceTherm expr varName therm
     | Abstraction (v, expr) ->
-        if v = varName then replaceTherm expr varName therm
-        else (expression, No)
+        if (not (Set.contains v (getFreeVars therm)) || not (Set.contains varName (getFreeVars expr))) then
+            (Abstraction (v, fst (replaceTherm expr varName therm)), Yes)
+        else
+            let renamedExpr, v' = alphaRename expr v
+            (Abstraction (v', fst (replaceTherm renamedExpr varName therm)), Yes)
     | Application (expr1, expr2) ->
         (Application(fst (replaceTherm expr1 varName therm),
                      fst (replaceTherm expr2 varName therm)), Yes)
