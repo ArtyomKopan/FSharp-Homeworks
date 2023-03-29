@@ -3,7 +3,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>Task_4._2</RootNamespace>
+        <RootNamespace>Task_4._1</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,8 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FsCheck" Version="3.0.0-beta2" />
       <PackageReference Include="FsUnit" Version="5.2.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     </ItemGroup>
 
 </Project>
