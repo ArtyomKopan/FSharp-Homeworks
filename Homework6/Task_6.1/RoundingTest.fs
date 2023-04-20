@@ -11,7 +11,7 @@ let ``test 1``() =
         return a / b
     }
     r |> should equal 1.333
-    
+
 [<Test>]
 let ``test2``() =
     let rounding prec = RoundingBuilder(prec)
