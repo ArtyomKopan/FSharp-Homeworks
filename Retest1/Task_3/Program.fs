@@ -15,7 +15,8 @@ type OptionBuilder() =
 let opt = OptionBuilder()
 
 let evalMoves startPoint movesList =
-    let rec move (x, y) = function
+    let rec move (x, y) moves =
+        match moves with
         | [] -> opt { return (x, y) }
         | Left dx :: ms ->
             let newX = x - dx
@@ -40,3 +41,4 @@ let evalMoves startPoint movesList =
     
     move startPoint movesList
     
+printfn $"{evalMoves (0, 0) [Right 5; Top 10]}"
