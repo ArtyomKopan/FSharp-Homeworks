@@ -21,7 +21,7 @@ let evalMoves startPoint movesList =
         | Left dx :: ms ->
             let newX = x - dx
             if newX < 0 then opt { if false then
-                                       return (x, y) }
+                                       return (x, y) } //это вызов Zero
             else move (newX, y) ms
         | Right dx :: ms ->
             let newX = x + dx
@@ -41,4 +41,3 @@ let evalMoves startPoint movesList =
     
     move startPoint movesList
     
-printfn $"{evalMoves (0, 0) [Right 5; Top 10]}"
