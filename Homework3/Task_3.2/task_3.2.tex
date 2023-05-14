@@ -15,11 +15,7 @@ S\:K\:K \overset{?}{=} I
 $$
 
 \begin{gather}
-K\:K = (\lambda xy.x)(\lambda xy.x) =\\ (\lambda x.(\lambda y.x))\:(\lambda x.(\lambda y.x)) =\\ \lambda y.(\lambda x.(\lambda y.x))
-\end{gather}
-
-\begin{gather}
-S\:K\:K =\\ (\lambda x.(\lambda y.(\lambda z.x\:z\:(y\:z))))\:(\lambda y.(\lambda x.(\lambda y.x))) =\\ \lambda y.(\lambda z.((\lambda y.(\lambda x.(\lambda y.x)))\:z\:(y\:z))) =\\ \lambda y.(\lambda z.(\lambda x.x)) =\\ \lambda x.x = I
+S\:K\:K =\\ (\lambda x.\lambda y.\lambda z.xz(yz)) K K =\\ (\lambda y.\lambda z.Kz(yz)) K =\\ (\lambda y.\lambda z.z) K = \lambda z.z = I
 \end{gather}
 
 \end{document}
