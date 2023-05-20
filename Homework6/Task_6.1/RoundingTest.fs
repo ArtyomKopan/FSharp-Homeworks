@@ -21,3 +21,9 @@ let ``test2``() =
         return a / b
     }
     r |> should equal 0.048
+    
+[<Test>]
+let ``test 3``() =
+    let rounding prec = RoundingBuilder(prec)
+    let r = rounding 3 { return 1.0 / 3.0 }
+    r |> should equal 0.333
