@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{F\#. Homework 7}
+\author{Artyom Kopan}
+\date{May 2023}
+
+\begin{document}
+\large
+\maketitle
+
+\section{Grammar}
+$
+\langle program \rangle \;::= \; \{let \; \langle variable \rangle \; = \; \langle expression \rangle \; | \; \langle expression \rangle \} \\
+\langle expression \rangle \; ::= \; \langle expression' \rangle \; | \; \langle abstraction \rangle \; | \; \langle application \rangle \\
+\langle expression' \rangle \;::=\; \langle variable \rangle \;|\; (\langle expression \rangle ) \\
+\langle abstraction \rangle \;::=\; \lambda \langle variable \rangle \{\langle variable \rangle\}.\langle expression \rangle \\
+\langle application \rangle \;::=\; \langle expression' \rangle \langle expression' \rangle \;|\; \langle expression \rangle \langle application \rangle \\
+\langle variable \rangle \; ::= \; \langle letter \rangle \{\langle letter \rangle \;|\; \langle digit \rangle \} \\
+\langle letter \rangle \;::=\; A \;|\; B \;|\; ... \;|\; Z \;|\; a \;|\; b \;|\; ... \;|\; z \\
+\langle digit \rangle \;::=\; 1 \;|\; 2 \;|\; ... \;|\; 9 \\
+$
+
+\section{Example 1}
+let A = $\lambda$x.x x $\Longrightarrow$
+$
+\\ \langle program \rangle \\
+let \;\langle variable \rangle\; = \;\langle expression \rangle \\
+let \;\langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \}\; = \;\langle expression \rangle \\
+let \;\langle letter \rangle\; = \;\langle expression \rangle \\
+let \; A \; = \;\langle expression \rangle \\
+let \; A \; = \;\langle abstraction \rangle \\
+let \; A \; = \; \lambda \langle variable \rangle \{\langle variable \rangle\}.\langle expression \rangle \\
+let \; A \; = \; \lambda \langle variable \rangle.\langle expression \rangle \\
+let \; A \; = \; \lambda \langle letter \rangle\{\langle letter \rangle\;|\; digit\}.\langle expression \rangle \\
+let \; A \; = \; \lambda \langle letter \rangle.\langle expression \rangle \\
+let \; A \; = \; \lambda x.\langle expression \rangle \\
+let \; A \; = \; \lambda x.\langle application \rangle \\
+let \; A \; = \; \lambda x.\langle expression' \rangle \langle expression' \rangle \\
+let \; A \; = \; \lambda x.\langle variable \rangle \langle expression' \rangle \\
+let \; A \; = \; \lambda x.\langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \}\; \langle expression' \rangle \\
+let \; A \; = \; \lambda x.\langle letter \rangle\; \langle expression' \rangle \\
+let \; A \; = \; \lambda x.x\; \langle expression' \rangle \\
+let \; A \; = \; \lambda x.x\; \langle variable \rangle \\
+let \; A \; = \; \lambda x.x\; \langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \} \\
+let \; A \; = \; \lambda x.x\; \langle letter \rangle \\
+let \; A \; = \; \lambda x.x\; x \;\;\;\blacksquare \\
+$
+
+\section{Example 2}
+let B = $\lambda$xy.x (y x) $\Longrightarrow$
+$
+\\ \langle program \rangle \\
+let \;\langle variable \rangle\; = \;\langle expression \rangle \\
+let \;\langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \}\; = \;\langle expression \rangle \\
+let \;\langle letter \rangle\; = \;\langle expression \rangle \\
+let \; A \; = \;\langle expression \rangle \\
+let \; A \; = \;\langle abstraction \rangle \\
+let \; A \; = \; \lambda \langle variable \rangle \{\langle variable \rangle\}.\langle expression \rangle \\
+let \; A \; = \; \lambda \langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \} \{\langle variable \rangle\}.\langle expression \rangle \\
+let \; A \; = \; \lambda \langle letter \rangle \{\langle variable \rangle\}.\langle expression \rangle \\
+let \; A \; = \; \lambda x \{\langle variable \rangle\}.\langle expression \rangle \\
+let \; A \; = \; \lambda x \langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \}.\langle expression \rangle \\
+let \; A \; = \; \lambda x \langle letter \rangle.\langle expression \rangle \\
+let \; A \; = \; \lambda x y.\langle expression \rangle \\
+let \; A \; = \; \lambda x y.\langle expression \rangle \\
+let \; A \; = \; \lambda x y.\langle application \rangle \\
+let \; A \; = \; \lambda x y.\langle expression' \rangle \;\langle expression' \rangle \\
+let \; A \; = \; \lambda x y.\langle variable \rangle \;\langle expression' \rangle \\
+let \; A \; = \; \lambda x y.\langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \} \;\langle expression' \rangle \\
+let \; A \; = \; \lambda x y.\langle letter \rangle\ \;\langle expression' \rangle \\
+let \; A \; = \; \lambda x y.x \;\langle expression' \rangle \\
+let \; A \; = \; \lambda x y.x \;( \langle expression \rangle ) \\
+let \; A \; = \; \lambda x y.x \;( \langle application \rangle ) \\
+let \; A \; = \; \lambda x y.x \;( \langle expression' \rangle \langle expression' \rangle ) \\
+let \; A \; = \; \lambda x y.x \;( \langle variable \rangle \langle expression' \rangle ) \\
+let \; A \; = \; \lambda x y.x \;( \langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \} \langle expression' 
+\rangle ) \\
+let \; A \; = \; \lambda x y.x \;( \langle letter \rangle \langle expression' 
+\rangle ) \\
+let \; A \; = \; \lambda x y.x \;( y \langle expression' 
+\rangle ) \\
+let \; A \; = \; \lambda x y.x \;( y \langle expression' 
+\rangle ) \\
+let \; A \; = \; \lambda x y.x \;( y \langle variable 
+\rangle ) \\
+let \; A \; = \; \lambda x y.x \;( y \langle letter \rangle\{\langle letter \rangle\;|\; \langle digit \rangle \} ) \\
+let \; A \; = \; \lambda x y.x \;( y \langle letter \rangle ) \\
+let \; A \; = \; \lambda x y.x \;( y \; x ) \;\;\;\blacksquare \\
+$
+
+\end{document}
+
