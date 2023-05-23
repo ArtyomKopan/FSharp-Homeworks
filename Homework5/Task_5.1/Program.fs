@@ -40,10 +40,10 @@ type Net(computers: Computer list) =
     member n.updateComputers newComputersList = mComputers <- newComputersList
     
     member n.InfectComputer ?number =
-        let p = n.randomNumberGenerator.NextDouble()
+        let p = randomNumberGenerator.NextDouble()
         let number = 
           Option.defaultWith 
-            (fun () -> n.randomNumberGenerator.Next(0, List.length n.computers - 1)) 
+            (fun () -> randomNumberGenerator.Next(0, List.length n.computers - 1)) 
             number
         if (p <= mComputers[number].probability) then
                 mComputers[number].InfectComputer()
@@ -56,7 +56,7 @@ type Net(computers: Computer list) =
                 match currentIsInfected with
                 | false -> comp
                 | true ->
-                    let randomNumber = n.randomNumberGenerator.NextDouble()
+                    let randomNumber = randomNumberGenerator.NextDouble()
                     if (randomNumber <= comp.probability) then
                         List.map (fun i ->
                                       if (not n.computers[i].isInfected) then
