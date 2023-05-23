@@ -41,14 +41,12 @@ type Net(computers: Computer list) =
     
     member n.InfectComputer ?number =
         let p = n.randomNumberGenerator.NextDouble()
-        match number with
-        | None ->
-            let randomNumber = n.randomNumberGenerator.Next(0, List.length n.computers - 1)
-            if (p <= mComputers[randomNumber].probability) then
-                mComputers[randomNumber].InfectComputer()
-        | Some num ->
-            if (p <= mComputers[num].probability) then
-                mComputers[num].InfectComputer()
+        let number = 
+          Option.defaultWith 
+            (fun () -> n.randomNumberGenerator.Next(0, List.length n.computers - 1)) 
+            number
+        if (p <= mComputers[number].probability) then
+                mComputers[number].InfectComputer()
             
     member n.Infect() =
         n.updateComputers (
