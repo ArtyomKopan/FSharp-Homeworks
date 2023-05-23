@@ -29,7 +29,7 @@ type Net(computers: Computer list) =
     
     let mutable mNewInfectedComputers: Computer list = []
     
-    member n.randomNumberGenerator = Random()
+    let randomNumberGenerator = Random()
     
     member n.computers = mComputers
     
