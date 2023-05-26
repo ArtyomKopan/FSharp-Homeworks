@@ -11,7 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Blog" Version="1.0.0.2" />
       <PackageReference Include="FsUnit" Version="5.2.0" />
+      <PackageReference Include="Giraffe" Version="6.0.0" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     </ItemGroup>
 
