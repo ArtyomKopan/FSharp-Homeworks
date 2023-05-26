@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+\title{Homework3}
+\author{Artyom Kopan}
+
+\begin{document}
+    \huge
+    \maketitle
+
+    \section{Task 3.1}
+    \begin{equation}
+        ((\lambda a.(\lambda b.b\:b)(\lambda b.b\:b))\:b)((\lambda c.(c\:b))(\lambda a.a))
+    \end{equation}
+    $\beta$-конверсия
+    \begin{equation}
+        (\lambda a.(\lambda b.b\:b)(\lambda b.b\:b))\:b)\:((\lambda a.a)\:b)
+    \end{equation}
+    $\beta$-конверсия
+    \begin{equation}
+        ((\lambda a.(\lambda b.b\:b)(\lambda b.b\:b))\:b)\:b
+    \end{equation}
+    $\beta$-конверсия
+    \begin{equation}
+    (\lambda b.b\:b)\:(\lambda b.b\:b)\:b
+    \end{equation}
+
+    Это выражение не является нормальной формой, так как редукции можно продолжать. Но если продолжать применение $\beta$-конверсии, то терм не изменится. Однако утверждается, что редукция по нормальной стратегии является полной в том смысле, что если терм имеет нормальную форму, то редукция по нормальной стратегии в конце концов достигнет её (см. \href{https://en.wikipedia.org/wiki/Beta\_normal\_form}{Beta\_normal\_form}).
+    Мы получили противоречие, значит, данный терм не имеет нормальной формы.
+
+\end{document}
